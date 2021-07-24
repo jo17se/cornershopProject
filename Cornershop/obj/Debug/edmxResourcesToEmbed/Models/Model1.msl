@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="cornershopModelStoreContainer" CdmEntityContainer="cornershopEntities">
+    <EntitySetMapping Name="boletas">
+      <EntityTypeMapping TypeName="cornershopModel.boleta">
+        <MappingFragment StoreEntitySet="boleta">
+          <ScalarProperty Name="num_boleta" ColumnName="num_boleta" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="cod_shop" ColumnName="cod_shop" />
+          <ScalarProperty Name="cod_cli" ColumnName="cod_cli" />
+          <ScalarProperty Name="num_ordenpedido" ColumnName="num_ordenpedido" />
+          <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+          <ScalarProperty Name="descuento" ColumnName="descuento" />
+          <ScalarProperty Name="total" ColumnName="total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categorias">
+      <EntityTypeMapping TypeName="cornershopModel.categoria">
+        <MappingFragment StoreEntitySet="categoria">
+          <ScalarProperty Name="cod_cate" ColumnName="cod_cate" />
+          <ScalarProperty Name="nom_des" ColumnName="nom_des" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clientes">
+      <EntityTypeMapping TypeName="cornershopModel.cliente">
+        <MappingFragment StoreEntitySet="clientes">
+          <ScalarProperty Name="cod_cli" ColumnName="cod_cli" />
+          <ScalarProperty Name="nom_cli" ColumnName="nom_cli" />
+          <ScalarProperty Name="dir_cli" ColumnName="dir_cli" />
+          <ScalarProperty Name="cod_dis" ColumnName="cod_dis" />
+          <ScalarProperty Name="sexo" ColumnName="sexo" />
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="cod_usu" ColumnName="cod_usu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetalleOrdenPedidoes">
+      <EntityTypeMapping TypeName="cornershopModel.DetalleOrdenPedido">
+        <MappingFragment StoreEntitySet="DetalleOrdenPedido">
+          <ScalarProperty Name="num_ordenp" ColumnName="num_ordenp" />
+          <ScalarProperty Name="cod_pro" ColumnName="cod_pro" />
+          <ScalarProperty Name="nom_pro" ColumnName="nom_pro" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="precio_venta" ColumnName="precio_venta" />
+          <ScalarProperty Name="importe" ColumnName="importe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="distritoes">
+      <EntityTypeMapping TypeName="cornershopModel.distrito">
+        <MappingFragment StoreEntitySet="distrito">
+          <ScalarProperty Name="cod_dis" ColumnName="cod_dis" />
+          <ScalarProperty Name="nom_dis" ColumnName="nom_dis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrdenPedidoes">
+      <EntityTypeMapping TypeName="cornershopModel.OrdenPedido">
+        <MappingFragment StoreEntitySet="OrdenPedido">
+          <ScalarProperty Name="num_ordenPedido" ColumnName="num_ordenPedido" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="cod_cli" ColumnName="cod_cli" />
+          <ScalarProperty Name="nom_cli" ColumnName="nom_cli" />
+          <ScalarProperty Name="cod_shop" ColumnName="cod_shop" />
+          <ScalarProperty Name="cod_tipoPago" ColumnName="cod_tipoPago" />
+          <ScalarProperty Name="total" ColumnName="total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pagoes">
+      <EntityTypeMapping TypeName="cornershopModel.pago">
+        <MappingFragment StoreEntitySet="pago">
+          <ScalarProperty Name="cod_pago" ColumnName="cod_pago" />
+          <ScalarProperty Name="cod_tipoPago" ColumnName="cod_tipoPago" />
+          <ScalarProperty Name="cod_cli" ColumnName="cod_cli" />
+          <ScalarProperty Name="numTarjeta" ColumnName="numTarjeta" />
+          <ScalarProperty Name="mm" ColumnName="mm" />
+          <ScalarProperty Name="aa" ColumnName="aa" />
+          <ScalarProperty Name="cvc" ColumnName="cvc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="presentacions">
+      <EntityTypeMapping TypeName="cornershopModel.presentacion">
+        <MappingFragment StoreEntitySet="presentacion">
+          <ScalarProperty Name="cod_pre" ColumnName="cod_pre" />
+          <ScalarProperty Name="nom_pre" ColumnName="nom_pre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Productoes">
+      <EntityTypeMapping TypeName="cornershopModel.Producto">
+        <MappingFragment StoreEntitySet="Producto">
+          <ScalarProperty Name="cod_pro" ColumnName="cod_pro" />
+          <ScalarProperty Name="nom_pro" ColumnName="nom_pro" />
+          <ScalarProperty Name="pre_venta" ColumnName="pre_venta" />
+          <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="cod_cate" ColumnName="cod_cate" />
+          <ScalarProperty Name="cod_tie" ColumnName="cod_tie" />
+          <ScalarProperty Name="cod_pres" ColumnName="cod_pres" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="shoopers">
+      <EntityTypeMapping TypeName="cornershopModel.shooper">
+        <MappingFragment StoreEntitySet="shooper">
+          <ScalarProperty Name="cod_shop" ColumnName="cod_shop" />
+          <ScalarProperty Name="nom_shop" ColumnName="nom_shop" />
+          <ScalarProperty Name="dir_shop" ColumnName="dir_shop" />
+          <ScalarProperty Name="cod_dis" ColumnName="cod_dis" />
+          <ScalarProperty Name="edad" ColumnName="edad" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="cel" ColumnName="cel" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="cod_usu" ColumnName="cod_usu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tiendas">
+      <EntityTypeMapping TypeName="cornershopModel.tienda">
+        <MappingFragment StoreEntitySet="tienda">
+          <ScalarProperty Name="id_pais_tienda" ColumnName="id_pais_tienda" />
+          <ScalarProperty Name="cod_usu_tienda" ColumnName="cod_usu_tienda" />
+          <ScalarProperty Name="id_cat_tienda" ColumnName="id_cat_tienda" />
+          <ScalarProperty Name="cod_tie" ColumnName="cod_tie" />
+          <ScalarProperty Name="nom_tie" ColumnName="nom_tie" />
+          <ScalarProperty Name="dir_tie" ColumnName="dir_tie" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="celular" ColumnName="celular" />
+          <ScalarProperty Name="cod_dis" ColumnName="cod_dis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipoPagoes">
+      <EntityTypeMapping TypeName="cornershopModel.tipoPago">
+        <MappingFragment StoreEntitySet="tipoPago">
+          <ScalarProperty Name="cod_tipoPago" ColumnName="cod_tipoPago" />
+          <ScalarProperty Name="nombTipoPago" ColumnName="nombTipoPago" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuarios">
+      <EntityTypeMapping TypeName="cornershopModel.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="cod_usu" ColumnName="cod_usu" />
+          <ScalarProperty Name="tipo_usu" ColumnName="tipo_usu" />
+          <ScalarProperty Name="nom_usu" ColumnName="nom_usu" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="activacion" ColumnName="activacion" />
+          <ScalarProperty Name="perfil" ColumnName="perfil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CATEGORIA_TIENDA">
+      <EntityTypeMapping TypeName="cornershopModel.CATEGORIA_TIENDA">
+        <MappingFragment StoreEntitySet="CATEGORIA_TIENDA">
+          <ScalarProperty Name="C_NOMBRE" ColumnName="C_NOMBRE" />
+          <ScalarProperty Name="ID_CATEGORIA" ColumnName="ID_CATEGORIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAIS">
+      <EntityTypeMapping TypeName="cornershopModel.PAI">
+        <MappingFragment StoreEntitySet="PAIS">
+          <ScalarProperty Name="C_NOMBRE" ColumnName="C_NOMBRE" />
+          <ScalarProperty Name="ID_PAIS" ColumnName="ID_PAIS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

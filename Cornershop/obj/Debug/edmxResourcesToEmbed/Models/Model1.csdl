@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="cornershopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="boleta">
+    <Key>
+      <PropertyRef Name="num_boleta" />
+    </Key>
+    <Property Name="num_boleta" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="cod_shop" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cod_cli" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="num_ordenpedido" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="subtotal" Type="Int32" Nullable="false" />
+    <Property Name="descuento" Type="Int32" />
+    <Property Name="total" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="OrdenPedido" Relationship="Self.pk_or_pedi" FromRole="boleta" ToRole="OrdenPedido" />
+  </EntityType>
+  <EntityType Name="categoria">
+    <Key>
+      <PropertyRef Name="cod_cate" />
+    </Key>
+    <Property Name="cod_cate" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nom_des" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Productoes" Relationship="Self.pk_cod_cate" FromRole="categoria" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="cliente">
+    <Key>
+      <PropertyRef Name="cod_cli" />
+    </Key>
+    <Property Name="cod_cli" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nom_cli" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dir_cli" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="cod_dis" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DNI" Type="Int32" />
+    <Property Name="Telefono" Type="Int32" />
+    <Property Name="Celular" Type="Int32" />
+    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="cod_usu" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="pagoes" Relationship="Self.pk_cod_cl" FromRole="clientes" ToRole="pago" />
+    <NavigationProperty Name="OrdenPedidoes" Relationship="Self.pk_cod_cli" FromRole="clientes" ToRole="OrdenPedido" />
+    <NavigationProperty Name="OrdenPedidoes1" Relationship="Self.pk_cod_clis" FromRole="clientes" ToRole="OrdenPedido" />
+    <NavigationProperty Name="distrito" Relationship="Self.pk_cod_dis_cli" FromRole="clientes" ToRole="distrito" />
+  </EntityType>
+  <EntityType Name="DetalleOrdenPedido">
+    <Key>
+      <PropertyRef Name="num_ordenp" />
+    </Key>
+    <Property Name="num_ordenp" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cod_pro" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nom_pro" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cantidad" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="precio_venta" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="importe" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="Producto" Relationship="Self.pk_cod_pro" FromRole="DetalleOrdenPedido" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="distrito">
+    <Key>
+      <PropertyRef Name="cod_dis" />
+    </Key>
+    <Property Name="cod_dis" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nom_dis" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="clientes" Relationship="Self.pk_cod_dis_cli" FromRole="distrito" ToRole="clientes" />
+    <NavigationProperty Name="shoopers" Relationship="Self.pk_cod_dis" FromRole="distrito" ToRole="shooper" />
+    <NavigationProperty Name="tiendas" Relationship="Self.pk_cod_dis_pro" FromRole="distrito" ToRole="tienda" />
+  </EntityType>
+  <EntityType Name="OrdenPedido">
+    <Key>
+      <PropertyRef Name="num_ordenPedido" />
+    </Key>
+    <Property Name="num_ordenPedido" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="cod_cli" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="nom_cli" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="cod_shop" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="cod_tipoPago" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="total" Type="Int32" />
+    <NavigationProperty Name="boletas" Relationship="Self.pk_or_pedi" FromRole="OrdenPedido" ToRole="boleta" />
+    <NavigationProperty Name="cliente" Relationship="Self.pk_cod_cli" FromRole="OrdenPedido" ToRole="clientes" />
+    <NavigationProperty Name="cliente1" Relationship="Self.pk_cod_clis" FromRole="OrdenPedido" ToRole="clientes" />
+    <NavigationProperty Name="shooper" Relationship="Self.pk_cod_empl" FromRole="OrdenPedido" ToRole="shooper" />
+    <NavigationProperty Name="shooper1" Relationship="Self.pk_cod_enpL" FromRole="OrdenPedido" ToRole="shooper" />
+  </EntityType>
+  <EntityType Name="pago">
+    <Key>
+      <PropertyRef Name="cod_pago" />
+    </Key>
+    <Property Name="cod_pago" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cod_tipoPago" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cod_cli" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numTarjeta" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mm" Type="Int32" Nullable="false" />
+    <Property Name="aa" Type="Int32" Nullable="false" />
+    <Property Name="cvc" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="cliente" Relationship="Self.pk_cod_cl" FromRole="pago" ToRole="clientes" />
+    <NavigationProperty Name="tipoPago" Relationship="Self.pk_cod_tip" FromRole="pago" ToRole="tipoPago" />
+  </EntityType>
+  <EntityType Name="presentacion">
+    <Key>
+      <PropertyRef Name="cod_pre" />
+    </Key>
+    <Property Name="cod_pre" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nom_pre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Productoes" Relationship="Self.pk_cod_presentacion" FromRole="presentacion" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="cod_pro" />
+    </Key>
+    <Property Name="cod_pro" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nom_pro" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pre_venta" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="stock" Type="Int32" Nullable="false" />
+    <Property Name="cod_cate" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cod_tie" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="cod_pres" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="categoria" Relationship="Self.pk_cod_cate" FromRole="Producto" ToRole="categoria" />
+    <NavigationProperty Name="DetalleOrdenPedidoes" Relationship="Self.pk_cod_pro" FromRole="Producto" ToRole="DetalleOrdenPedido" />
+    <NavigationProperty Name="presentacion" Relationship="Self.pk_cod_presentacion" FromRole="Producto" ToRole="presentacion" />
+    <NavigationProperty Name="tienda" Relationship="Self.pk_cod_prove" FromRole="Producto" ToRole="tienda" />
+  </EntityType>
+  <EntityType Name="shooper">
+    <Key>
+      <PropertyRef Name="cod_shop" />
+    </Key>
+    <Property Name="cod_shop" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nom_shop" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dir_shop" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="cod_dis" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="edad" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="tel" Type="Int32" Nullable="false" />
+    <Property Name="cel" Type="Int32" />
+    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="cod_usu" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="distrito" Relationship="Self.pk_cod_dis" FromRole="shooper" ToRole="distrito" />
+    <NavigationProperty Name="OrdenPedidoes" Relationship="Self.pk_cod_empl" FromRole="shooper" ToRole="OrdenPedido" />
+    <NavigationProperty Name="OrdenPedidoes1" Relationship="Self.pk_cod_enpL" FromRole="shooper" ToRole="OrdenPedido" />
+  </EntityType>
+  <EntityType Name="tienda">
+    <Key>
+      <PropertyRef Name="cod_tie" />
+    </Key>
+    <Property Name="cod_tie" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nom_tie" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dir_tie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+    <Property Name="celular" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="cod_dis" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="distrito" Relationship="Self.pk_cod_dis_pro" FromRole="tienda" ToRole="distrito" />
+    <NavigationProperty Name="Productoes" Relationship="Self.pk_cod_prove" FromRole="tienda" ToRole="Producto" />
+    <Property Name="id_cat_tienda" Type="Int32" />
+    <NavigationProperty Name="CATEGORIA_TIENDA" Relationship="cornershopModel.pk_idcat_tienda" FromRole="tienda" ToRole="CATEGORIA_TIENDA" />
+    <Property Name="cod_usu_tienda" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="id_pais_tienda" Type="Int32" />
+    <NavigationProperty Name="PAI" Relationship="cornershopModel.pk_idpais_tienda" FromRole="tienda" ToRole="PAI" />
+    <NavigationProperty Name="usuario" Relationship="cornershopModel.pk_codusu_tienda" FromRole="tienda" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="tipoPago">
+    <Key>
+      <PropertyRef Name="cod_tipoPago" />
+    </Key>
+    <Property Name="cod_tipoPago" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombTipoPago" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="pagoes" Relationship="Self.pk_cod_tip" FromRole="tipoPago" ToRole="pago" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="cod_usu" />
+    </Key>
+    <Property Name="cod_usu" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tipo_usu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nom_usu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="activacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="perfil" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tiendas" Relationship="cornershopModel.pk_codusu_tienda" FromRole="usuario" ToRole="tienda" />
+  </EntityType>
+  <Association Name="pk_or_pedi">
+    <End Role="OrdenPedido" Type="Self.OrdenPedido" Multiplicity="1" />
+    <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrdenPedido">
+        <PropertyRef Name="num_ordenPedido" />
+      </Principal>
+      <Dependent Role="boleta">
+        <PropertyRef Name="num_ordenpedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_cate">
+    <End Role="categoria" Type="Self.categoria" Multiplicity="1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categoria">
+        <PropertyRef Name="cod_cate" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="cod_cate" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_cl">
+    <End Role="clientes" Type="Self.cliente" Multiplicity="1" />
+    <End Role="pago" Type="Self.pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="cod_cli" />
+      </Principal>
+      <Dependent Role="pago">
+        <PropertyRef Name="cod_cli" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_cli">
+    <End Role="clientes" Type="Self.cliente" Multiplicity="0..1" />
+    <End Role="OrdenPedido" Type="Self.OrdenPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="cod_cli" />
+      </Principal>
+      <Dependent Role="OrdenPedido">
+        <PropertyRef Name="cod_cli" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_clis">
+    <End Role="clientes" Type="Self.cliente" Multiplicity="0..1" />
+    <End Role="OrdenPedido" Type="Self.OrdenPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="cod_cli" />
+      </Principal>
+      <Dependent Role="OrdenPedido">
+        <PropertyRef Name="cod_cli" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_dis_cli">
+    <End Role="distrito" Type="Self.distrito" Multiplicity="0..1" />
+    <End Role="clientes" Type="Self.cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="distrito">
+        <PropertyRef Name="cod_dis" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="cod_dis" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_pro">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="DetalleOrdenPedido" Type="Self.DetalleOrdenPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="cod_pro" />
+      </Principal>
+      <Dependent Role="DetalleOrdenPedido">
+        <PropertyRef Name="cod_pro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_dis">
+    <End Role="distrito" Type="Self.distrito" Multiplicity="1" />
+    <End Role="shooper" Type="Self.shooper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="distrito">
+        <PropertyRef Name="cod_dis" />
+      </Principal>
+      <Dependent Role="shooper">
+        <PropertyRef Name="cod_dis" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_dis_pro">
+    <End Role="distrito" Type="Self.distrito" Multiplicity="0..1" />
+    <End Role="tienda" Type="Self.tienda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="distrito">
+        <PropertyRef Name="cod_dis" />
+      </Principal>
+      <Dependent Role="tienda">
+        <PropertyRef Name="cod_dis" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_empl">
+    <End Role="shooper" Type="Self.shooper" Multiplicity="0..1" />
+    <End Role="OrdenPedido" Type="Self.OrdenPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="shooper">
+        <PropertyRef Name="cod_shop" />
+      </Principal>
+      <Dependent Role="OrdenPedido">
+        <PropertyRef Name="cod_shop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_enpL">
+    <End Role="shooper" Type="Self.shooper" Multiplicity="0..1" />
+    <End Role="OrdenPedido" Type="Self.OrdenPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="shooper">
+        <PropertyRef Name="cod_shop" />
+      </Principal>
+      <Dependent Role="OrdenPedido">
+        <PropertyRef Name="cod_shop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_tip">
+    <End Role="tipoPago" Type="Self.tipoPago" Multiplicity="1" />
+    <End Role="pago" Type="Self.pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoPago">
+        <PropertyRef Name="cod_tipoPago" />
+      </Principal>
+      <Dependent Role="pago">
+        <PropertyRef Name="cod_tipoPago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_presentacion">
+    <End Role="presentacion" Type="Self.presentacion" Multiplicity="0..1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="presentacion">
+        <PropertyRef Name="cod_pre" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="cod_pres" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_prove">
+    <End Role="tienda" Type="Self.tienda" Multiplicity="0..1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tienda">
+        <PropertyRef Name="cod_tie" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="cod_tie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="cornershopEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="boletas" EntityType="Self.boleta" />
+    <EntitySet Name="categorias" EntityType="Self.categoria" />
+    <EntitySet Name="clientes" EntityType="Self.cliente" />
+    <EntitySet Name="DetalleOrdenPedidoes" EntityType="Self.DetalleOrdenPedido" />
+    <EntitySet Name="distritoes" EntityType="Self.distrito" />
+    <EntitySet Name="OrdenPedidoes" EntityType="Self.OrdenPedido" />
+    <EntitySet Name="pagoes" EntityType="Self.pago" />
+    <EntitySet Name="presentacions" EntityType="Self.presentacion" />
+    <EntitySet Name="Productoes" EntityType="Self.Producto" />
+    <EntitySet Name="shoopers" EntityType="Self.shooper" />
+    <EntitySet Name="tiendas" EntityType="Self.tienda" />
+    <EntitySet Name="tipoPagoes" EntityType="Self.tipoPago" />
+    <EntitySet Name="usuarios" EntityType="Self.usuario" />
+    <AssociationSet Name="pk_or_pedi" Association="Self.pk_or_pedi">
+      <End Role="OrdenPedido" EntitySet="OrdenPedidoes" />
+      <End Role="boleta" EntitySet="boletas" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_cate" Association="Self.pk_cod_cate">
+      <End Role="categoria" EntitySet="categorias" />
+      <End Role="Producto" EntitySet="Productoes" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_cl" Association="Self.pk_cod_cl">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="pago" EntitySet="pagoes" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_cli" Association="Self.pk_cod_cli">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="OrdenPedido" EntitySet="OrdenPedidoes" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_clis" Association="Self.pk_cod_clis">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="OrdenPedido" EntitySet="OrdenPedidoes" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_dis_cli" Association="Self.pk_cod_dis_cli">
+      <End Role="distrito" EntitySet="distritoes" />
+      <End Role="clientes" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_pro" Association="Self.pk_cod_pro">
+      <End Role="Producto" EntitySet="Productoes" />
+      <End Role="DetalleOrdenPedido" EntitySet="DetalleOrdenPedidoes" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_dis" Association="Self.pk_cod_dis">
+      <End Role="distrito" EntitySet="distritoes" />
+      <End Role="shooper" EntitySet="shoopers" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_dis_pro" Association="Self.pk_cod_dis_pro">
+      <End Role="distrito" EntitySet="distritoes" />
+      <End Role="tienda" EntitySet="tiendas" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_empl" Association="Self.pk_cod_empl">
+      <End Role="shooper" EntitySet="shoopers" />
+      <End Role="OrdenPedido" EntitySet="OrdenPedidoes" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_enpL" Association="Self.pk_cod_enpL">
+      <End Role="shooper" EntitySet="shoopers" />
+      <End Role="OrdenPedido" EntitySet="OrdenPedidoes" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_tip" Association="Self.pk_cod_tip">
+      <End Role="tipoPago" EntitySet="tipoPagoes" />
+      <End Role="pago" EntitySet="pagoes" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_presentacion" Association="Self.pk_cod_presentacion">
+      <End Role="presentacion" EntitySet="presentacions" />
+      <End Role="Producto" EntitySet="Productoes" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_prove" Association="Self.pk_cod_prove">
+      <End Role="tienda" EntitySet="tiendas" />
+      <End Role="Producto" EntitySet="Productoes" />
+    </AssociationSet>
+    <EntitySet Name="CATEGORIA_TIENDA" EntityType="cornershopModel.CATEGORIA_TIENDA" />
+    <AssociationSet Name="pk_idcat_tienda" Association="cornershopModel.pk_idcat_tienda">
+      <End Role="CATEGORIA_TIENDA" EntitySet="CATEGORIA_TIENDA" />
+      <End Role="tienda" EntitySet="tiendas" />
+    </AssociationSet>
+    <EntitySet Name="PAIS" EntityType="cornershopModel.PAI" />
+    <AssociationSet Name="pk_idpais_tienda" Association="cornershopModel.pk_idpais_tienda">
+      <End Role="PAI" EntitySet="PAIS" />
+      <End Role="tienda" EntitySet="tiendas" />
+    </AssociationSet>
+    <AssociationSet Name="pk_codusu_tienda" Association="cornershopModel.pk_codusu_tienda">
+      <End Role="usuario" EntitySet="usuarios" />
+      <End Role="tienda" EntitySet="tiendas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CATEGORIA_TIENDA">
+    <Key>
+      <PropertyRef Name="ID_CATEGORIA" />
+    </Key>
+    <Property Name="ID_CATEGORIA" Type="Int32" Nullable="false" />
+    <Property Name="C_NOMBRE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tiendas" Relationship="cornershopModel.pk_idcat_tienda" FromRole="CATEGORIA_TIENDA" ToRole="tienda" />
+  </EntityType>
+  <Association Name="pk_idcat_tienda">
+    <End Type="cornershopModel.CATEGORIA_TIENDA" Role="CATEGORIA_TIENDA" Multiplicity="0..1" />
+    <End Type="cornershopModel.tienda" Role="tienda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIA_TIENDA">
+        <PropertyRef Name="ID_CATEGORIA" />
+      </Principal>
+      <Dependent Role="tienda">
+        <PropertyRef Name="id_cat_tienda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PAI">
+    <Key>
+      <PropertyRef Name="ID_PAIS" />
+    </Key>
+    <Property Name="ID_PAIS" Type="Int32" Nullable="false" />
+    <Property Name="C_NOMBRE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tiendas" Relationship="cornershopModel.pk_idpais_tienda" FromRole="PAI" ToRole="tienda" />
+  </EntityType>
+  <Association Name="pk_idpais_tienda">
+    <End Type="cornershopModel.PAI" Role="PAI" Multiplicity="0..1" />
+    <End Type="cornershopModel.tienda" Role="tienda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAI">
+        <PropertyRef Name="ID_PAIS" />
+      </Principal>
+      <Dependent Role="tienda">
+        <PropertyRef Name="id_pais_tienda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_codusu_tienda">
+    <End Type="cornershopModel.usuario" Role="usuario" Multiplicity="0..1" />
+    <End Type="cornershopModel.tienda" Role="tienda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="cod_usu" />
+      </Principal>
+      <Dependent Role="tienda">
+        <PropertyRef Name="cod_usu_tienda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

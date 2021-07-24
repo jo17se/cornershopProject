@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="cornershopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="boleta">
+    <Key>
+      <PropertyRef Name="num_boleta" />
+    </Key>
+    <Property Name="num_boleta" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="cod_shop" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="cod_cli" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="num_ordenpedido" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="subtotal" Type="int" Nullable="false" />
+    <Property Name="descuento" Type="int" />
+    <Property Name="total" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="categoria">
+    <Key>
+      <PropertyRef Name="cod_cate" />
+    </Key>
+    <Property Name="cod_cate" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="nom_des" Type="varchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CATEGORIA_TIENDA">
+    <Key>
+      <PropertyRef Name="ID_CATEGORIA" />
+    </Key>
+    <Property Name="ID_CATEGORIA" Type="int" Nullable="false" />
+    <Property Name="C_NOMBRE" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="clientes">
+    <Key>
+      <PropertyRef Name="cod_cli" />
+    </Key>
+    <Property Name="cod_cli" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="nom_cli" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="dir_cli" Type="varchar" MaxLength="40" />
+    <Property Name="cod_dis" Type="varchar" MaxLength="8" />
+    <Property Name="sexo" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="DNI" Type="int" />
+    <Property Name="Telefono" Type="int" />
+    <Property Name="Celular" Type="int" />
+    <Property Name="email" Type="varchar" MaxLength="150" />
+    <Property Name="cod_usu" Type="varchar" MaxLength="8" />
+  </EntityType>
+  <EntityType Name="DetalleOrdenPedido">
+    <Key>
+      <PropertyRef Name="num_ordenp" />
+    </Key>
+    <Property Name="num_ordenp" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="cod_pro" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="nom_pro" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="cantidad" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="precio_venta" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="importe" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="distrito">
+    <Key>
+      <PropertyRef Name="cod_dis" />
+    </Key>
+    <Property Name="cod_dis" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="nom_dis" Type="varchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrdenPedido">
+    <Key>
+      <PropertyRef Name="num_ordenPedido" />
+    </Key>
+    <Property Name="num_ordenPedido" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="cod_cli" Type="varchar" MaxLength="8" />
+    <Property Name="nom_cli" Type="varchar" MaxLength="40" />
+    <Property Name="cod_shop" Type="varchar" MaxLength="8" />
+    <Property Name="cod_tipoPago" Type="varchar" MaxLength="8" />
+    <Property Name="total" Type="int" />
+  </EntityType>
+  <EntityType Name="pago">
+    <Key>
+      <PropertyRef Name="cod_pago" />
+    </Key>
+    <Property Name="cod_pago" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="cod_tipoPago" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="cod_cli" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="numTarjeta" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="mm" Type="int" Nullable="false" />
+    <Property Name="aa" Type="int" Nullable="false" />
+    <Property Name="cvc" Type="varchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PAIS">
+    <Key>
+      <PropertyRef Name="ID_PAIS" />
+    </Key>
+    <Property Name="ID_PAIS" Type="int" Nullable="false" />
+    <Property Name="C_NOMBRE" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="presentacion">
+    <Key>
+      <PropertyRef Name="cod_pre" />
+    </Key>
+    <Property Name="cod_pre" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="nom_pre" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="cod_pro" />
+    </Key>
+    <Property Name="cod_pro" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="nom_pro" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="pre_venta" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="stock" Type="int" Nullable="false" />
+    <Property Name="cod_cate" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="cod_tie" Type="varchar" MaxLength="8" />
+    <Property Name="cod_pres" Type="varchar" MaxLength="8" />
+  </EntityType>
+  <EntityType Name="shooper">
+    <Key>
+      <PropertyRef Name="cod_shop" />
+    </Key>
+    <Property Name="cod_shop" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="nom_shop" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="dir_shop" Type="varchar" MaxLength="40" />
+    <Property Name="cod_dis" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="edad" Type="varchar" MaxLength="2" />
+    <Property Name="tel" Type="int" Nullable="false" />
+    <Property Name="cel" Type="int" />
+    <Property Name="email" Type="varchar" MaxLength="150" />
+    <Property Name="cod_usu" Type="varchar" MaxLength="8" />
+  </EntityType>
+  <EntityType Name="tienda">
+    <Key>
+      <PropertyRef Name="cod_tie" />
+    </Key>
+    <Property Name="cod_tie" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="nom_tie" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="dir_tie" Type="varchar" MaxLength="50" />
+    <Property Name="telefono" Type="char" MaxLength="7" />
+    <Property Name="celular" Type="char" MaxLength="10" />
+    <Property Name="cod_dis" Type="varchar" MaxLength="8" />
+    <Property Name="id_cat_tienda" Type="int" />
+    <Property Name="cod_usu_tienda" Type="varchar" MaxLength="8" />
+    <Property Name="id_pais_tienda" Type="int" />
+  </EntityType>
+  <EntityType Name="tipoPago">
+    <Key>
+      <PropertyRef Name="cod_tipoPago" />
+    </Key>
+    <Property Name="cod_tipoPago" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="nombTipoPago" Type="varchar" MaxLength="60" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="cod_usu" />
+    </Key>
+    <Property Name="cod_usu" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="tipo_usu" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nom_usu" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="correo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="activacion" Type="varchar" MaxLength="50" />
+    <Property Name="perfil" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <Association Name="pk_cod_cate">
+    <End Role="categoria" Type="Self.categoria" Multiplicity="1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categoria">
+        <PropertyRef Name="cod_cate" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="cod_cate" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_cl">
+    <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+    <End Role="pago" Type="Self.pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="cod_cli" />
+      </Principal>
+      <Dependent Role="pago">
+        <PropertyRef Name="cod_cli" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_cli">
+    <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+    <End Role="OrdenPedido" Type="Self.OrdenPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="cod_cli" />
+      </Principal>
+      <Dependent Role="OrdenPedido">
+        <PropertyRef Name="cod_cli" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_clis">
+    <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+    <End Role="OrdenPedido" Type="Self.OrdenPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="cod_cli" />
+      </Principal>
+      <Dependent Role="OrdenPedido">
+        <PropertyRef Name="cod_cli" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_dis">
+    <End Role="distrito" Type="Self.distrito" Multiplicity="1" />
+    <End Role="shooper" Type="Self.shooper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="distrito">
+        <PropertyRef Name="cod_dis" />
+      </Principal>
+      <Dependent Role="shooper">
+        <PropertyRef Name="cod_dis" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_dis_cli">
+    <End Role="distrito" Type="Self.distrito" Multiplicity="0..1" />
+    <End Role="clientes" Type="Self.clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="distrito">
+        <PropertyRef Name="cod_dis" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="cod_dis" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_dis_pro">
+    <End Role="distrito" Type="Self.distrito" Multiplicity="0..1" />
+    <End Role="tienda" Type="Self.tienda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="distrito">
+        <PropertyRef Name="cod_dis" />
+      </Principal>
+      <Dependent Role="tienda">
+        <PropertyRef Name="cod_dis" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_empl">
+    <End Role="shooper" Type="Self.shooper" Multiplicity="0..1" />
+    <End Role="OrdenPedido" Type="Self.OrdenPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="shooper">
+        <PropertyRef Name="cod_shop" />
+      </Principal>
+      <Dependent Role="OrdenPedido">
+        <PropertyRef Name="cod_shop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_enpL">
+    <End Role="shooper" Type="Self.shooper" Multiplicity="0..1" />
+    <End Role="OrdenPedido" Type="Self.OrdenPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="shooper">
+        <PropertyRef Name="cod_shop" />
+      </Principal>
+      <Dependent Role="OrdenPedido">
+        <PropertyRef Name="cod_shop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_presentacion">
+    <End Role="presentacion" Type="Self.presentacion" Multiplicity="0..1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="presentacion">
+        <PropertyRef Name="cod_pre" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="cod_pres" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_pro">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="DetalleOrdenPedido" Type="Self.DetalleOrdenPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="cod_pro" />
+      </Principal>
+      <Dependent Role="DetalleOrdenPedido">
+        <PropertyRef Name="cod_pro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_prove">
+    <End Role="tienda" Type="Self.tienda" Multiplicity="0..1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tienda">
+        <PropertyRef Name="cod_tie" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="cod_tie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_cod_tip">
+    <End Role="tipoPago" Type="Self.tipoPago" Multiplicity="1" />
+    <End Role="pago" Type="Self.pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoPago">
+        <PropertyRef Name="cod_tipoPago" />
+      </Principal>
+      <Dependent Role="pago">
+        <PropertyRef Name="cod_tipoPago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_codusu_tienda">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="tienda" Type="Self.tienda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="cod_usu" />
+      </Principal>
+      <Dependent Role="tienda">
+        <PropertyRef Name="cod_usu_tienda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_idcat_tienda">
+    <End Role="CATEGORIA_TIENDA" Type="Self.CATEGORIA_TIENDA" Multiplicity="0..1" />
+    <End Role="tienda" Type="Self.tienda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIA_TIENDA">
+        <PropertyRef Name="ID_CATEGORIA" />
+      </Principal>
+      <Dependent Role="tienda">
+        <PropertyRef Name="id_cat_tienda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_idpais_tienda">
+    <End Role="PAIS" Type="Self.PAIS" Multiplicity="0..1" />
+    <End Role="tienda" Type="Self.tienda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAIS">
+        <PropertyRef Name="ID_PAIS" />
+      </Principal>
+      <Dependent Role="tienda">
+        <PropertyRef Name="id_pais_tienda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_or_pedi">
+    <End Role="OrdenPedido" Type="Self.OrdenPedido" Multiplicity="1" />
+    <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrdenPedido">
+        <PropertyRef Name="num_ordenPedido" />
+      </Principal>
+      <Dependent Role="boleta">
+        <PropertyRef Name="num_ordenpedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="cornershopModelStoreContainer">
+    <EntitySet Name="boleta" EntityType="Self.boleta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CATEGORIA_TIENDA" EntityType="Self.CATEGORIA_TIENDA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="clientes" EntityType="Self.clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DetalleOrdenPedido" EntityType="Self.DetalleOrdenPedido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="distrito" EntityType="Self.distrito" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrdenPedido" EntityType="Self.OrdenPedido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="pago" EntityType="Self.pago" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PAIS" EntityType="Self.PAIS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="presentacion" EntityType="Self.presentacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="shooper" EntityType="Self.shooper" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tienda" EntityType="Self.tienda" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tipoPago" EntityType="Self.tipoPago" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="pk_cod_cate" Association="Self.pk_cod_cate">
+      <End Role="categoria" EntitySet="categoria" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_cl" Association="Self.pk_cod_cl">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="pago" EntitySet="pago" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_cli" Association="Self.pk_cod_cli">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="OrdenPedido" EntitySet="OrdenPedido" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_clis" Association="Self.pk_cod_clis">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="OrdenPedido" EntitySet="OrdenPedido" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_dis" Association="Self.pk_cod_dis">
+      <End Role="distrito" EntitySet="distrito" />
+      <End Role="shooper" EntitySet="shooper" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_dis_cli" Association="Self.pk_cod_dis_cli">
+      <End Role="distrito" EntitySet="distrito" />
+      <End Role="clientes" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_dis_pro" Association="Self.pk_cod_dis_pro">
+      <End Role="distrito" EntitySet="distrito" />
+      <End Role="tienda" EntitySet="tienda" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_empl" Association="Self.pk_cod_empl">
+      <End Role="shooper" EntitySet="shooper" />
+      <End Role="OrdenPedido" EntitySet="OrdenPedido" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_enpL" Association="Self.pk_cod_enpL">
+      <End Role="shooper" EntitySet="shooper" />
+      <End Role="OrdenPedido" EntitySet="OrdenPedido" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_presentacion" Association="Self.pk_cod_presentacion">
+      <End Role="presentacion" EntitySet="presentacion" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_pro" Association="Self.pk_cod_pro">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="DetalleOrdenPedido" EntitySet="DetalleOrdenPedido" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_prove" Association="Self.pk_cod_prove">
+      <End Role="tienda" EntitySet="tienda" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="pk_cod_tip" Association="Self.pk_cod_tip">
+      <End Role="tipoPago" EntitySet="tipoPago" />
+      <End Role="pago" EntitySet="pago" />
+    </AssociationSet>
+    <AssociationSet Name="pk_codusu_tienda" Association="Self.pk_codusu_tienda">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="tienda" EntitySet="tienda" />
+    </AssociationSet>
+    <AssociationSet Name="pk_idcat_tienda" Association="Self.pk_idcat_tienda">
+      <End Role="CATEGORIA_TIENDA" EntitySet="CATEGORIA_TIENDA" />
+      <End Role="tienda" EntitySet="tienda" />
+    </AssociationSet>
+    <AssociationSet Name="pk_idpais_tienda" Association="Self.pk_idpais_tienda">
+      <End Role="PAIS" EntitySet="PAIS" />
+      <End Role="tienda" EntitySet="tienda" />
+    </AssociationSet>
+    <AssociationSet Name="pk_or_pedi" Association="Self.pk_or_pedi">
+      <End Role="OrdenPedido" EntitySet="OrdenPedido" />
+      <End Role="boleta" EntitySet="boleta" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

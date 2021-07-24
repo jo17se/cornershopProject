@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="24be0c929fff4a25ac25a8ef994a2428" Name="Diagram1">
+        <EntityTypeShape EntityType="cornershopModel.boleta" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cornershopModel.categoria" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="cornershopModel.cliente" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cornershopModel.DetalleOrdenPedido" Width="1.5" PointX="7.5" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="cornershopModel.distrito" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cornershopModel.OrdenPedido" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cornershopModel.pago" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cornershopModel.presentacion" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cornershopModel.Producto" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="cornershopModel.shooper" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cornershopModel.tienda" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cornershopModel.tipoPago" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cornershopModel.usuario" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="cornershopModel.pk_or_pedi" ManuallyRouted="false" />
+        <AssociationConnector Association="cornershopModel.pk_cod_cate" ManuallyRouted="false" />
+        <AssociationConnector Association="cornershopModel.pk_cod_cl" ManuallyRouted="false" />
+        <AssociationConnector Association="cornershopModel.pk_cod_cli" ManuallyRouted="false" />
+        <AssociationConnector Association="cornershopModel.pk_cod_clis" ManuallyRouted="false" />
+        <AssociationConnector Association="cornershopModel.pk_cod_dis_cli" ManuallyRouted="false" />
+        <AssociationConnector Association="cornershopModel.pk_cod_pro" ManuallyRouted="false" />
+        <AssociationConnector Association="cornershopModel.pk_cod_dis" ManuallyRouted="false" />
+        <AssociationConnector Association="cornershopModel.pk_cod_dis_pro" ManuallyRouted="false" />
+        <AssociationConnector Association="cornershopModel.pk_cod_empl" ManuallyRouted="false" />
+        <AssociationConnector Association="cornershopModel.pk_cod_enpL" ManuallyRouted="false" />
+        <AssociationConnector Association="cornershopModel.pk_cod_tip" ManuallyRouted="false" />
+        <AssociationConnector Association="cornershopModel.pk_cod_presentacion" ManuallyRouted="false" />
+        <AssociationConnector Association="cornershopModel.pk_cod_prove" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="cornershopModel.CATEGORIA_TIENDA" Width="1.5" PointX="10.375" PointY="0.875" />
+        <AssociationConnector Association="cornershopModel.pk_idcat_tienda" />
+        <EntityTypeShape EntityType="cornershopModel.PAI" Width="1.5" PointX="10.375" PointY="3.875" />
+        <AssociationConnector Association="cornershopModel.pk_idpais_tienda" />
+        <AssociationConnector Association="cornershopModel.pk_codusu_tienda" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
